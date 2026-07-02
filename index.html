@@ -51,8 +51,15 @@
 <!-- NAV -->
 <nav id="mainNav">
   <a href="#" class="nav-logo">
-    <img src="image/MCL-logo-2.png" alt="Meenakshi Studio" id="navLogoImg" />
-  </a>
+  <img src="image/MCL-logo-Blk-PNG.png" 
+       alt="Meenakshi Studio" 
+       id="navLogoImg"
+       onerror="this.style.display='none'; document.getElementById('navLogoText').style.display='block';" />
+  <div id="navLogoText" style="display:none; text-align:center; line-height:1.1;">
+    <div style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:500; letter-spacing:0.18em; color:#fff;" id="logoTextInner">MEENAKSHI STUDIO</div>
+    <div style="font-size:0.55rem; letter-spacing:0.15em; color:rgba(255,255,255,0.7);">FARIDABAD</div>
+  </div>
+</a>
   <ul class="nav-links">
     <li><a href="#portfolio">Photography</a></li>
     <li><a href="#films">Films</a></li>
@@ -542,7 +549,7 @@
     <div class="row g-5">
       <div class="col-lg-4">
         <div class="footer-logo">
-          <img src="https://meenakshistudio.com/wp-content/uploads/MCL-logo-White-PNG.png" alt="Meenakshi Studio" />
+          <img src="image/MCL-logo-White-PNG.png" alt="Meenakshi Studio" />
         </div>
         <p class="footer-tagline">Delhi/NCR's finest wedding<br>photographers & filmmakers</p>
         <div class="social-row mt-3">
@@ -610,17 +617,24 @@
   // ── NAVBAR SCROLL
   const nav = document.getElementById('mainNav');
   const logoImg = document.getElementById('navLogoImg');
-  const logoWhite = 'https://meenakshistudio.com/wp-content/uploads/MCL-logo-White-PNG.png';
-  const logoBlack = 'https://meenakshistudio.com/wp-content/uploads/MCL-logo-Blk-PNG.png';
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 60) {
-      nav.classList.add('scrolled');
-      logoImg.src = logoBlack;
-    } else {
-      nav.classList.remove('scrolled');
-      logoImg.src = logoWhite;
-    }
-  });
+  const logoWhite = 'image/MCL-logo-White-PNG.png';
+  const logoBlack = 'image/MCL-logo-Blk-PNG.png';
+ window.addEventListener('scroll', () => {
+  const logoText = document.getElementById('logoTextInner');
+  if (window.scrollY > 60) {
+    nav.classList.add('scrolled');
+    logoImg.src = logoBlack;
+    if (logoText) logoText.style.color = '#1a1a1a';
+    const sub = logoText?.nextElementSibling;
+    if (sub) sub.style.color = 'rgba(0,0,0,0.5)';
+  } else {
+    nav.classList.remove('scrolled');
+    logoImg.src = logoWhite;
+    if (logoText) logoText.style.color = '#fff';
+    const sub = logoText?.nextElementSibling;
+    if (sub) sub.style.color = 'rgba(255,255,255,0.7)';
+  }
+});
 
   // ── MOBILE MENU
   const menuBtn = document.getElementById('menuBtn');
